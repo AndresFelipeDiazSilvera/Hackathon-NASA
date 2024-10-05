@@ -1,8 +1,4 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* App.css */
-#map {
-  height: 50vh;
-  width: 50vw;
-}
+
