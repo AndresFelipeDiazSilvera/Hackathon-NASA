@@ -1,1 +1,3 @@
-print("Backend")
+from app import app
+
+app.run()
