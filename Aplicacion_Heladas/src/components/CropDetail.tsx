@@ -8,7 +8,7 @@ import {
 import { useParams } from "react-router-dom";
 import data from "./../data/crops.json";
 import { useEffect, useState } from "react";
-import { getClimate } from "../services/api";
+import { getClimate, getPrediction } from "../services/api";
 import Chart from "./Chart2";
 
 const MapClick = ({ changeState }: { changeState: any }) => {
@@ -31,6 +31,8 @@ export const CropDetail = () => {
 
   const [x3, setCategories3] = useState([]);
   const [y3, setSerie3] = useState([]);
+
+  const [prediction, setPrediction] = useState(0);
 
   const [state, setUseData] = useState(data["data"][id]);
   useEffect(() => {
@@ -62,6 +64,9 @@ export const CropDetail = () => {
       setCategories3(labels3);
       setSerie3(scores3);
     });
+    getPrediction(state.lat, state.lon).then((result) => {
+      setPrediction(result);
+    });
   }, []);
 
   const changeState = (lat: number, lon: number) => {
@@ -75,8 +80,12 @@ export const CropDetail = () => {
   };
 
   return (
-    <div className="grid grid-rows-2">
-      <div className="w-[500px] h-[300px] m-8 rounded-lg border border-black overflow-hidden">
+    <div className="flex flex-col items-center w-full">
+      <h3 className="text-xl font-bold text-blue-700 text-center">
+        Temperature Prediction: <br />
+        {prediction.toString().slice(0, 5)} °C
+      </h3>
+      <div className="w-[500px] h-[300px] m-4 rounded-lg border border-black overflow-hidden">
         <MapContainer
           center={[state.lat, state.lon]}
           zoom={8}
@@ -92,7 +101,7 @@ export const CropDetail = () => {
           <MapClick changeState={changeState} />
         </MapContainer>
       </div>
-      <div className="p-5 flex flex-col gap-3">
+      <div className="p-5 flex flex-col gap-3 w-full overflow-x-scroll">
         <div className="w-full  bg-transparent border-2 border-[#1A5319]  rounded-lg text-white h-full grid place-items-center">
           <Chart labels={x3} scores={y3} label={"Wind"} />
         </div>

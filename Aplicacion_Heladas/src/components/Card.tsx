@@ -32,8 +32,8 @@ export const Card = ({ id, lat, lon }: Props) => {
         <p className="mb-3 font-normal text-white">
           {lat}, {lon}
         </p>
-        <a
-          href="#"
+        <Link
+          to={`/crop/${id}`}
           className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none dark:bg-[#508D4E] dark:hover:bg-[#80AF81]"
         >
           Ver más información
@@ -52,7 +52,7 @@ export const Card = ({ id, lat, lon }: Props) => {
               d="M1 5h12m0 0L9 1m4 4L9 9"
             />
           </svg>
-        </a>
+        </Link>
       </div>
     </div>
   );

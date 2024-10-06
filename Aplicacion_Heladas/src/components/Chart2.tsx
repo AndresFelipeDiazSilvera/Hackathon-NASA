@@ -48,7 +48,7 @@ export default function Chart(props: Props) {
       ],
       labels: ["", ...props.labels],
     };
-  }, []);
+  }, [props]);
 
   return <Line data={data} options={options} />;
 }

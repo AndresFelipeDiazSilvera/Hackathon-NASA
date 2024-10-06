@@ -15,7 +15,7 @@ def getInfo():
     lat = request.args.get('lat')
     lon = request.args.get('lon')
     endNotFormat = datetime.now()
-    end = endNotFormat.strftime("%Y%m%d")
+    end = (endNotFormat -relativedelta(days=3)).strftime("%Y%m%d")
     start = (endNotFormat - relativedelta(years=1)).strftime("%Y%m%d")
     url = f"https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M,QV2M,PRECTOTCORR,V2M&community=RE&longitude={lon}&latitude={lat}&start={start}&end={end}&format=JSON"
     data = api_nasa.make_request(url)["properties"]["parameter"]
