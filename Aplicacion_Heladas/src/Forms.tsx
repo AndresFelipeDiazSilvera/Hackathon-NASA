@@ -8,12 +8,11 @@ const PhoneInput: React.FC = () => {
   useEffect(() => {
     if (inputRef.current) {
       const iti = intlTelInput(inputRef.current, {
-        initialCountry: 'co', // Colombia como país inicial
+        initialCountry: 'co',
         utilsScript:
-          'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js', // Formato y validación
+          'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js', 
       });
 
-      // Cleanup al desmontar el componente
       return () => {
         iti.destroy();
       };
@@ -40,17 +39,17 @@ const PhoneInput: React.FC = () => {
 };
 
 const Forms: React.FC = () => {
-  const [isAlertVisible, setIsAlertVisible] = useState(false); // Estado para manejar la visibilidad del alert
-  const [isImageVisible, setIsImageVisible] = useState(false); // Estado para manejar la visibilidad de la imagen
+  const [isAlertVisible, setIsAlertVisible] = useState(false);
+  const [isImageVisible, setIsImageVisible] = useState(false);
 
   const handleButtonClick = () => {
-    setIsAlertVisible(true); // Mostrar el alert
-    setIsImageVisible(true); // Mostrar la imagen
+    setIsAlertVisible(true);
+    setIsImageVisible(true);
   };
 
   const handleDismiss = () => {
-    setIsAlertVisible(false); // Ocultar el alert
-    alert('Alert dismissed!'); // Mensaje adicional
+    setIsAlertVisible(false);
+    alert('Alert dismissed!');
   };
 
   return (
@@ -101,7 +100,7 @@ const Forms: React.FC = () => {
 
       {isImageVisible && (
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxe5ZNmoeBuhtYKp63pZeueoELILbG-55pew&s" // Cambia esta URL por la URL de tu imagen
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxe5ZNmoeBuhtYKp63pZeueoELILbG-55pew&s"
           alt="Imagen"
           className="absolute inset-x-0 mx-auto mt-5 w-32 h-auto"
         />
