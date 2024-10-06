@@ -72,8 +72,6 @@ const Forms: React.FC = () => {
           />
         </div>
 
-        <PhoneInput />
-
         <div className="mb-5">
           <label
             htmlFor="date"
@@ -89,6 +87,8 @@ const Forms: React.FC = () => {
           />
         </div>
 
+        <PhoneInput />
+
         <button
           type="button"
           onClick={handleButtonClick}
@@ -97,6 +97,7 @@ const Forms: React.FC = () => {
           Send
         </button>
       </form>
+
 
       {isImageVisible && (
         <img
