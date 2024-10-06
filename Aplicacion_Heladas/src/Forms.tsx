@@ -1,60 +1,127 @@
-function Forms() {
+import React, { useRef, useEffect, useState } from 'react';
+import intlTelInput from 'intl-tel-input';
+import 'intl-tel-input/build/css/intlTelInput.css';
+
+const PhoneInput: React.FC = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      const iti = intlTelInput(inputRef.current, {
+        initialCountry: 'co', // Colombia como país inicial
+        utilsScript:
+          'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js', // Formato y validación
+      });
+
+      // Cleanup al desmontar el componente
+      return () => {
+        iti.destroy();
+      };
+    }
+  }, []);
+
   return (
-    <form className="max-w-sm mx-auto">
-      <div className="mb-5">
-        <label
-          htmlFor="email"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        >
-          Your email
-        </label>
-        <input
-          type="email"
-          id="email"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="name@flowbite.com"
-          required
-        />
-      </div>
-      <div className="mb-5">
-        <label
-          htmlFor="password"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        >
-          Your password
-        </label>
-        <input
-          type="password"
-          id="password"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          required
-        />
-      </div>
-      <div className="flex items-start mb-5">
-        <div className="flex items-center h-5">
+    <div className="mb-5">
+      <label
+        htmlFor="phoneNumber"
+        className="block mb-2 text-sm font-medium text-black"
+      >
+        Phone Number
+      </label>
+      <input
+        type="tel"
+        id="phoneNumber"
+        className="bg-white border border-green-300 text-black text-sm rounded-lg focus:ring-green-300 focus:border-green-300 block w-full p-2.5 dark:bg-white dark:border-green-600 dark:text-black dark:focus:ring-green-600 dark:focus:border-green-600"
+        ref={inputRef}
+        required
+      />
+    </div>
+  );
+};
+
+const Forms: React.FC = () => {
+  const [isAlertVisible, setIsAlertVisible] = useState(false); // Estado para manejar la visibilidad del alert
+  const [isImageVisible, setIsImageVisible] = useState(false); // Estado para manejar la visibilidad de la imagen
+
+  const handleButtonClick = () => {
+    setIsAlertVisible(true); // Mostrar el alert
+    setIsImageVisible(true); // Mostrar la imagen
+  };
+
+  const handleDismiss = () => {
+    setIsAlertVisible(false); // Ocultar el alert
+    alert('Alert dismissed!'); // Mensaje adicional
+  };
+
+  return (
+    <div className="relative">
+      <h2 className="text-center text-xl font-bold mb-5">Register Frost</h2>
+      <form className="max-w-sm mx-auto">
+        <div className="mb-5">
+          <label
+            htmlFor="fullName"
+            className="block mb-2 text-sm font-medium text-black"
+          >
+            Full Name
+          </label>
           <input
-            id="remember"
-            type="checkbox"
-            value=""
-            className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+            type="text"
+            id="fullName"
+            className="bg-white border border-green-300 text-black text-sm rounded-lg focus:ring-green-300 focus:border-green-300 block w-full p-2.5 dark:bg-white dark:border-green-600 dark:text-black dark:focus:ring-green-600 dark:focus:border-green-600"
             required
           />
         </div>
-        <label
-          htmlFor="remember"
-          className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-        >
-          Remember me
-        </label>
-      </div>
-      <button
-        type="submit"
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-      >
-        Submit
-      </button>
-    </form>
+
+        <PhoneInput />
+
+        <div className="mb-5">
+          <label
+            htmlFor="date"
+            className="block mb-2 text-sm font-medium text-black"
+          >
+            Date
+          </label>
+          <input
+            type="date"
+            id="date"
+            className="bg-white border border-green-300 text-black text-sm rounded-lg focus:ring-green-300 focus:border-green-300 block w-full p-2.5 dark:bg-white dark:border-green-600 dark:text-black dark:focus:ring-green-600 dark:focus:border-green-600"
+            required
+          />
+        </div>
+
+        <button
+          type="button"
+          onClick={handleButtonClick}
+          className="text-white hover:text-black bg-[#D6EFD8] hover:bg-[#D6EFD8] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#508D4E] dark:hover:bg-[508D4E]"
+          >
+          Send
+        </button>
+      </form>
+
+      {isImageVisible && (
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxe5ZNmoeBuhtYKp63pZeueoELILbG-55pew&s" // Cambia esta URL por la URL de tu imagen
+          alt="Imagen"
+          className="absolute inset-x-0 mx-auto mt-5 w-32 h-auto"
+        />
+      )}
+
+      {isAlertVisible && (
+        <div className="fixed bottom-5 right-5 z-50 bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded-lg shadow-lg">
+          <div className="flex items-center justify-between">
+            <span className="font-medium">Successful!</span>
+            <button
+              onClick={handleDismiss}
+              className="ml-2 text-green-700 font-bold"
+            >
+              X
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
   );
-}
+};
 
 export default Forms;
+

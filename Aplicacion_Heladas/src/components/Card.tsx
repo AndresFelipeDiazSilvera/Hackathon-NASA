@@ -26,7 +26,7 @@ export const Card = ({ id, lat, lon }: Props) => {
       <div className="p-5 bg-[#1E3E62]">
         <a href="#">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Ubicación del cultivo
+          Location
           </h5>
         </a>
         <p className="mb-3 font-normal text-white">
@@ -36,7 +36,7 @@ export const Card = ({ id, lat, lon }: Props) => {
           to={`/crop/${id}`}
           className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none dark:bg-[#508D4E] dark:hover:bg-[#80AF81]"
         >
-          Ver más información
+          More imformation
           <svg
             className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
             aria-hidden="true"

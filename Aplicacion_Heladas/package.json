@@ -10,16 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/intl-tel-input": "^18.1.4",
     "apexcharts": "^3.54.0",
     "axios": "^1.7.7",
     "chart.js": "^4.4.4",
     "flowbite-react": "^0.10.2",
+    "intl-tel-input": "^24.6.0",
     "leaflet": "^1.9.4",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.26.2",
+    "react-use": "^17.5.1",
     "tailwind": "^4.0.0"
   },
   "devDependencies": {
