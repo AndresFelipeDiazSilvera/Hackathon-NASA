@@ -40,11 +40,10 @@ const PhoneInput: React.FC = () => {
 
 const Forms: React.FC = () => {
   const [isAlertVisible, setIsAlertVisible] = useState(false);
-  const [isImageVisible, setIsImageVisible] = useState(false);
+
 
   const handleButtonClick = () => {
     setIsAlertVisible(true);
-    setIsImageVisible(true);
   };
 
   const handleDismiss = () => {
@@ -97,14 +96,6 @@ const Forms: React.FC = () => {
         </button>
       </form>
 
-
-      {isImageVisible && (
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxe5ZNmoeBuhtYKp63pZeueoELILbG-55pew&s"
-          alt="Imagen"
-          className="absolute inset-x-0 mx-auto mt-5 w-32 h-auto"
-        />
-      )}
 
       {isAlertVisible && (
         <div className="fixed bottom-5 right-5 z-50 bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded-lg shadow-lg">
